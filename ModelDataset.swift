@@ -10,14 +10,16 @@ import Foundation
 // MARK: - User Login Dataset Methods
 //-------------------------------------------------------------
 
-func getUserLoginData(dataResponse: Data) -> LoginDataModel? {
+func getUserLoginData<T: Codable>(dataResponse: Data) -> (response:T?, error: error?) {
     
-    var loginData : LoginDataModel?
-    
-    let decoder = JSONDecoder()
-    if let loadedLoginData = try? decoder.decode(LoginDataModel.self, from: dataResponse) {
-        loginData = loadedLoginData
-    }
-    
-    return loginData
+   let decoder = JSONDecoder()
+	
+	do {
+		let modelData = try decoder.decode(T.self, from: dataResponse) 
+        return (modelData,nil)
+	}
+	catch {
+		return (nil,error)
+	}
+   
 }
