@@ -16,7 +16,7 @@ func getUserLoginData<T: Codable>(dataResponse: Data) -> (response:T?, error: er
 	
 	do {
 		let modelData = try decoder.decode(T.self, from: dataResponse) 
-        return (modelData,nil)
+        	return (modelData,nil)
 	}
 	catch {
 		return (nil,error)
