@@ -7,19 +7,16 @@ import Foundation
 
 
 //-------------------------------------------------------------
-// MARK: - User Login Dataset Methods
+// MARK: - Model Dataset Methods
 //-------------------------------------------------------------
 
-func getUserLoginData<T: Codable>(dataResponse: Data) -> (response:T?, error: error?) {
+func genericModelDataset<T: Codable>(dataOfModel: Data, model: T.Type) -> (response:T?, error: error?) {
     
-   let decoder = JSONDecoder()
-	
-	do {
-		let modelData = try decoder.decode(T.self, from: dataResponse) 
-        	return (modelData,nil)
-	}
-	catch {
-		return (nil,error)
-	}
-   
+    do {
+        let modelData = try JSONDecoder().decode(T.self, from: dataOfModel)
+        return (modelData,nil)
+    }
+    catch {
+        return (nil,error)
+    }
 }
