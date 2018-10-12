@@ -14,6 +14,6 @@ struct loginParameter {
 
 struct APIUrl {
     
-    static let kBaseUrl     = "http://xyz.xyz.in/api/"
+    static let kBaseUrl     = "http://www.bhavesh.in/api/"
     static let kLogin       = kBaseUrl + "login"
 }
