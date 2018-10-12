@@ -28,13 +28,17 @@ class LoginViewController: UIViewController {
     
     func webserviceOfLogin() {
         
-        let param: [String:String] = [loginParameter.kEmail: "xyz@xyz.com", loginParameter.kPassword: "1234"]
+        let param: [String:String] = [loginParameter.kEmail: "bhavesh@odedara.com", loginParameter.kPassword: "1234"]
         
         webserviceForLogin(param) { (data, result, status) in
             
             if status {
                 // Response Status True
-                self.userData = getUserLoginData(dataResponse: data)
+                guard let loginData = genericModelDataset(dataOfModel: data, model: LoginDataModel.self) else {
+                    // Modeling failed
+                    return
+                }
+                self.userData = loginData
             }
             else {
                 // Response Status False
